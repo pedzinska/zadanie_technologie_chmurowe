@@ -1,5 +1,5 @@
 import cv2
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Resource, Api
 
 # initialize the HOG descriptor/person detector
@@ -9,7 +9,7 @@ hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 app = Flask(__name__)
 api = Api(app)
 
-class PeopleCounter(Resource):
+class PeopleCounterStatic(Resource):
     def get(self):
         # load image
         image = cv2.imread('klasowe-bez-ramki.jpg')
@@ -21,7 +21,20 @@ class PeopleCounter(Resource):
         return {'peopleCount': len(rects)}
 
 
-api.add_resource(PeopleCounter, '/')
+class PeopleCounterStaticDynamicUrl(Resource):
+    def get(self)
+        url = request,args,get('url')
+        print ('url', url)
+        return {'PeopleCount': 0}
+
+    #todo: pobrac zdjecie z adresu,
+    #pobrane zdjecie mozna zapisac na dysku lub przetwarzac je w pamieci podrecznej
+    #zaladowane zdjecie do zmiennej image przekazac do algorytmu i zwrocic z endopintu liczbe wykrytych osob
+
+
+
+
+api.add_resource(PeopleCounterStatic, '/')
 
 if __name__ == '__main__':
     app.run(debug=True)
