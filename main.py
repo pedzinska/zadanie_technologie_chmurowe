@@ -30,7 +30,14 @@ class PeopleCounterStaticDynamicUrl(Resource):
     #todo: pobrac zdjecie z adresu,
     #pobrane zdjecie mozna zapisac na dysku lub przetwarzac je w pamieci podrecznej
     #zaladowane zdjecie do zmiennej image przekazac do algorytmu i zwrocic z endopintu liczbe wykrytych osob
+#url = 'https://place.dog/300/200'
 
+>>> # fetch file
+>>> #response = requests.get(url, allow_redirects=True)
+
+>>> # Get response status
+>>> #response.status_code
+#200
 
 
 
