@@ -12,7 +12,7 @@ api = Api(app)
 class PeopleCounter(Resource):
     def get(self):
         # load image
-    image = cv2.imread('klasowe-bez-ramki.jpg')
+        image = cv2.imread('klasowe-bez-ramki.jpg')
         image = cv2.resize(image, (700, 400))
 
         # detect people in the image
