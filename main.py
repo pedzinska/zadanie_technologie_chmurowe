@@ -10,6 +10,7 @@ hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 app = Flask(__name__)
 api = Api(app)
 
+
 class PeopleCounterStatic(Resource):
 
     def get(self):
@@ -21,6 +22,8 @@ class PeopleCounterStatic(Resource):
         (rects, weights) = hog.detectMultiScale(image, winStride=(4, 4), padding=(8, 8), scale=1.05)
 
         return {'peopleCount': len(rects)}
+
+
 class PeopleCounterDynamicUrl(Resource):
 
     def get(self):
