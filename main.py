@@ -1,6 +1,7 @@
 import cv2
 from flask import Flask, request
 from flask_restful import Resource, Api
+from urllib.request import urlretrieve
 
 # initialize the HOG descriptor/person detector
 hog = cv2.HOGDescriptor()
