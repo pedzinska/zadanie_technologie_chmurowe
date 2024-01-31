@@ -21,23 +21,24 @@ class PeopleCounterStatic(Resource):
         return {'peopleCount': len(rects)}
 
 
-class PeopleCounterStaticDynamicUrl(Resource):
-    def get(self)
-        url = request,args,get('url')
-        print ('url', url)
-        return {'PeopleCount': 0}
+class PeopleCounterDynamicUrl(Resource):
+    def get(self):
+        url = 'https://img.freepik.com/free-photo/people-surfing-brazil_23-2151079355.jpg?w=996&t=st=1706561159~exp=1706561759~hmac=60f4370805a82af086129a965e83740cc569753d7c75ff6879c9d72070b0204c'
+        img_path, _ = urlretrieve(url, "downloaded_image.jpg")
+        image2 = cv2.imread(img_path)
+        #image2 = cv2.imread(urlretrieve('https://img.freepik.com/free-photo/people-surfing-brazil_23-2151079355.jpg?w=996&t=st=1706561159~exp=1706561759~hmac=60f4370805a82af086129a965e83740cc569753d7c75ff6879c9d72070b0204c', "ludzie"))
+        # TODO:
+        # 1. Pobrać zdjęcie z otrzymanego adresu
+        # 2. Pobrane zdjęcie można zapisać na dysku lub przetwarzać je w pamięci podręcznej
+        # 3. Załadowane zjęcie do zmiennej image przekazać do algorytmu hog.detectMultiScale i zwrócić z endpointu liczbę wykrytych osób.
 
-    #todo: pobrac zdjecie z adresu,
-    #pobrane zdjecie mozna zapisac na dysku lub przetwarzac je w pamieci podrecznej
-    #zaladowane zdjecie do zmiennej image przekazac do algorytmu i zwrocic z endopintu liczbe wykrytych osob
-#url = 'https://place.dog/300/200'
+        image2 = cv2.resize(image2, (700, 400))
 
->>> # fetch file
->>> #response = requests.get(url, allow_redirects=True)
+        # detect people in the image
+        (rects, weights) = hog.detectMultiScale(image2, winStride=(4, 4), padding=(8, 8), scale=1.05)
 
->>> # Get response status
->>> #response.status_code
-#200
+        return {'peopleCount': len(rects)}
+
 
 
 
